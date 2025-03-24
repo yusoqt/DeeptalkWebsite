@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepTalk</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .card {
+            perspective: 1000px;
+        }
+        .card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <h1 class="text-3xl font-bold mb-6 text-center">DeepTalk</h1>
+    <div class="mb-4 w-full max-w-md">
+        <label class="font-semibold block text-center">เลือกหมวดคำถาม:</label>
+        <select id="category" class="mt-2 p-2 border rounded w-full">
+            <option value="friends">เพื่อน</option>
+            <option value="partner">แฟน/คนคุย</option>
+            <option value="family">ครอบครัว</option>
+            <option value="self">ตัวเอง</option>
+        </select>
+    </div>
+    <div class="card w-64 h-40 md:w-80 md:h-48 bg-white shadow-lg rounded-lg relative cursor-pointer" onclick="flipCard()">
+        <div class="card-inner w-full h-full flex items-center justify-center">
+            <div class="card-front flex items-center justify-center w-full h-full bg-blue-500 text-white font-bold rounded-lg text-center p-4">
+                คลิกเพื่อสุ่มคำถาม
+            </div>
+            <div class="card-back flex items-center justify-center w-full h-full bg-white text-black font-bold rounded-lg p-4 text-center">
+                <span id="question">...</span>
+            </div>
+        </div>
+    </div>
+    <p class="mt-4 text-gray-700 text-center">คลิกที่การ์ดอีกครั้งเพื่อสุ่มคำถามใหม่</p>
+    
+<script src="script.js"></script>
+</body>
+</html>
